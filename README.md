@@ -1,4 +1,4 @@
-# EZ4Connect
+# SHOUConnect
 
 *前身为 HITsz Connect for Windows*
 
@@ -7,9 +7,11 @@
 ![Downloads](https://img.shields.io/github/downloads/chenx-dust/EZ4Connect/total)
 ![License](https://img.shields.io/github/license/chenx-dust/EZ4Connect)
 
-改进的 ZJU-Connect 图形界面
+基于 EZ4Connect、ZJU-Connect 和 EasierConnect 的 SHOUConnect 图形界面
 
-## 🎉 现已正式提供 aTrust 支持
+本项目是对 EZ4Connect 的修改版本，遵循 GNU GPL Version 3 发布，并保留上游项目及第三方组件的许可证与致谢。默认连接上海海洋大学 EasyConnect 服务器 `vpn.shou.edu.cn`。
+
+## 🎉 支持 EasyConnect 与 aTrust
 
 如使用中遇到问题，可加入 ZJU-Connect 用户反馈 QQ 群 1037726410 交流。
 
@@ -21,11 +23,11 @@
 
 在本项目的 [Releases](https://github.com/chenx-dust/EZ4Connect/releases) 页面下载最新版本：
 
-- **Windows 用户**：下载 `EZ4Connect-vX.X.X-windows-ARCH.zip` ，解压至同一目录下，双击运行 `EZ4Connect.exe` ；
+- **Windows 用户**：下载 `SHOUConnect-vX.X.X-windows-ARCH.zip` ，解压至同一目录下，双击运行 `SHOUConnect.exe` ；
   - 如果遇到缺少 DLL 等问题，请先下载安装 Microsoft Visual C++ 可再发行程序包版本（[x64](https://aka.ms/vs/17/release/vc_redist.x64.exe) | [arm64](https://aka.ms/vs/17/release/vc_redist.arm64.exe)），再运行程序；
-- **macOS 用户**：下载 `EZ4Connect-vX.X.X-macOS-ARCH.dmg` ，将 EZ4Connect 移动到应用程序目录中；
+- **macOS 用户**：下载 `SHOUConnect-vX.X.X-macOS-ARCH.dmg` ，将 SHOUConnect 移动到应用程序目录中；
   - ~~如果遇到“Apple 无法检查 App 是否包含恶意软件”等报错，请参考 [Apple 支持](https://support.apple.com/zh-cn/guide/mac-help/mchleab3a043/mac) 进行操作。~~本软件已通过 Apple 官方公证，可直接运行；
-- **Linux 用户**：下载 `EZ4Connect-vX.X.X-linux-ARCH.AppImage` ，赋予执行权限，运行即可；
+- **Linux 用户**：下载 `SHOUConnect-vX.X.X-linux-ARCH.AppImage` ，赋予执行权限，运行即可；
   - AppImage x64 仅支持系统 `glibc >= 2.31` 的发行版，Ubuntu 22.04 及以上版本可以正常运行（受限于 GitHub Actions Runner）；
   - AppImage arm64 仅支持系统 `glibc >= 2.38` 的发行版，Ubuntu 24.04 及以上版本可以正常运行（受限于 Qt 官方：[参考](https://doc.qt.io/qt-6/supported-platforms.html)）；
   - Arch Linux 用户推荐使用 [AUR](https://aur.archlinux.org/packages/ez4connect) 安装；

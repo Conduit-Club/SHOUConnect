@@ -23,7 +23,7 @@ void PresentationHelpers::showAboutDialog(QWidget *parent)
     const QString repository = ApplicationConstants::RepositoryName;
     messageBox.setText(
         QApplication::applicationDisplayName() + " " + QApplication::applicationVersion() +
-        "<br>改进的 ZJU-Connect 图形界面" +
+        "<br>SHOUConnect：EasyConnect 与 aTrust 图形客户端" +
         "<br>作者：<a href='https://github.com/chenx-dust'>Chenx Dust</a>" +
         "<br>项目主页：<a href='https://github.com/" + repository +
         "'>https://github.com/" + repository + "</a>" +

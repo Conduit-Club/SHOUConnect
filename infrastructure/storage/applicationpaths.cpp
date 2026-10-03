@@ -71,7 +71,7 @@ QString ApplicationPaths::logDirectory()
 
 QString ApplicationPaths::logFile()
 {
-    return QDir(logDirectory()).filePath("ez4connect.log");
+    return QDir(logDirectory()).filePath("shouconnect.log");
 }
 
 ApplicationPaths::DebugArtifactPaths ApplicationPaths::createDebugArtifactFiles(

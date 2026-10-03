@@ -249,9 +249,9 @@ MainWindow::MainWindow(
                 try
                 {
                     DeviceTrust::set(this,
-                        settings->value("ZJUConnect/Protocol", "easyconnect").toString(),
-                        settings->value("ZJUConnect/ServerAddress").toString(),
-                        settings->value("ZJUConnect/ServerPort").toInt(),
+                        settings->value("SHOUConnect/Protocol", "easyconnect").toString(),
+                        settings->value("SHOUConnect/ServerAddress").toString(),
+                        settings->value("SHOUConnect/ServerPort").toInt(),
                         currentProfileId, true);
                     qInfo().noquote() << "设置授信设备成功";
                     QMessageBox::information(this, "成功", "已设置授信设备");
@@ -270,9 +270,9 @@ MainWindow::MainWindow(
                 try
                 {
                     DeviceTrust::set(this,
-                        settings->value("ZJUConnect/Protocol", "easyconnect").toString(),
-                        settings->value("ZJUConnect/ServerAddress").toString(),
-                        settings->value("ZJUConnect/ServerPort").toInt(),
+                        settings->value("SHOUConnect/Protocol", "easyconnect").toString(),
+                        settings->value("SHOUConnect/ServerAddress").toString(),
+                        settings->value("SHOUConnect/ServerPort").toInt(),
                         currentProfileId, false);
                     qInfo().noquote() << "取消授信设备成功";
                     QMessageBox::information(this, "成功", "已取消授信设备");
@@ -384,7 +384,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     {
         event->ignore();
         hide();
-        showNotification("EZ4Connect", "程序已最小化到系统托盘，单击图标可恢复窗口。", QSystemTrayIcon::MessageIcon::Information);
+        showNotification("SHOUConnect", "程序已最小化到系统托盘，单击图标可恢复窗口。", QSystemTrayIcon::MessageIcon::Information);
     }
     else
     {
@@ -401,7 +401,7 @@ void MainWindow::changeEvent(QEvent *event)
         {
             event->ignore();
             hide();
-            showNotification("EZ4Connect", "程序已最小化到系统托盘，单击图标可恢复窗口。", QSystemTrayIcon::MessageIcon::Information);
+            showNotification("SHOUConnect", "程序已最小化到系统托盘，单击图标可恢复窗口。", QSystemTrayIcon::MessageIcon::Information);
         }
     }
     else
@@ -516,7 +516,7 @@ void MainWindow::updateProfileSummary()
         ? QStringLiteral("默认")
         : currentProfileId;
     const QString protocolSetting = settings->value(
-        "ZJUConnect/Protocol",
+        "SHOUConnect/Protocol",
         "easyconnect"
     ).toString();
     const QString protocol = protocolSetting.compare(
@@ -524,7 +524,7 @@ void MainWindow::updateProfileSummary()
         Qt::CaseInsensitive
     ) == 0 ? QStringLiteral("aTrust") : QStringLiteral("EasyConnect");
     const QString server = settings->value(
-        "ZJUConnect/ServerAddress"
+        "SHOUConnect/ServerAddress"
     ).toString().trimmed();
 
     QStringList details{protocol};
@@ -801,19 +801,19 @@ void MainWindow::openConfigurationGuide()
     }
 
     const QString oldServerAddress =
-        settings->value("ZJUConnect/ServerAddress").toString();
+        settings->value("SHOUConnect/ServerAddress").toString();
     const int oldServerPort =
-        settings->value("ZJUConnect/ServerPort").toInt();
+        settings->value("SHOUConnect/ServerPort").toInt();
     const QString oldProtocol =
-        settings->value("ZJUConnect/Protocol").toString();
+        settings->value("SHOUConnect/Protocol").toString();
     const QString oldAuthType =
-        settings->value("ZJUConnect/AuthType").toString();
+        settings->value("SHOUConnect/AuthType").toString();
     const QString oldEasyConnectAuthType =
-        settings->value("ZJUConnect/EasyConnectAuthType").toString();
+        settings->value("SHOUConnect/EasyConnectAuthType").toString();
     const QString oldLoginDomain =
-        settings->value("ZJUConnect/LoginDomain").toString();
+        settings->value("SHOUConnect/LoginDomain").toString();
     const QString oldLoginUrl =
-        settings->value("ZJUConnect/LoginURL").toString();
+        settings->value("SHOUConnect/LoginURL").toString();
 
     ConfigurationGuideDialog guide(this, settings);
     if (guide.exec() != QDialog::Accepted)
@@ -823,14 +823,14 @@ void MainWindow::openConfigurationGuide()
     guide.applyTo(*settings);
 
     const bool authenticationSettingsChanged =
-        oldServerAddress != settings->value("ZJUConnect/ServerAddress").toString()
-        || oldServerPort != settings->value("ZJUConnect/ServerPort").toInt()
-        || oldProtocol != settings->value("ZJUConnect/Protocol").toString()
-        || oldAuthType != settings->value("ZJUConnect/AuthType").toString()
+        oldServerAddress != settings->value("SHOUConnect/ServerAddress").toString()
+        || oldServerPort != settings->value("SHOUConnect/ServerPort").toInt()
+        || oldProtocol != settings->value("SHOUConnect/Protocol").toString()
+        || oldAuthType != settings->value("SHOUConnect/AuthType").toString()
         || oldEasyConnectAuthType
-            != settings->value("ZJUConnect/EasyConnectAuthType").toString()
-        || oldLoginDomain != settings->value("ZJUConnect/LoginDomain").toString()
-        || oldLoginUrl != settings->value("ZJUConnect/LoginURL").toString();
+            != settings->value("SHOUConnect/EasyConnectAuthType").toString()
+        || oldLoginDomain != settings->value("SHOUConnect/LoginDomain").toString()
+        || oldLoginUrl != settings->value("SHOUConnect/LoginURL").toString();
     if (authenticationSettingsChanged)
     {
         ApplicationPaths::clearClientData(currentProfileId);
@@ -844,7 +844,7 @@ void MainWindow::openConfigurationGuide()
 void MainWindow::promptFirstLaunchGuide()
 {
     promptConfigurationGuide(
-        "欢迎使用 EZ4Connect",
+        "欢迎使用 SHOUConnect",
         "检测到这是首次启动，是否现在配置 VPN 服务器？"
     );
 }

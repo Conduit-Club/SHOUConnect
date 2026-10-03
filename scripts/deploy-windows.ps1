@@ -1,9 +1,9 @@
 # Windows deployment script
-# Usage: .\deploy-windows.ps1 -TargetName "EZ4Connect" -DisplayName "EZ4Connect" -BuildDir "build" -Architecture "amd64" -Nightly "false"
+# Usage: .\deploy-windows.ps1 -TargetName "SHOUConnect" -DisplayName "SHOUConnect" -BuildDir "build" -Architecture "amd64" -Nightly "false"
 
 param(
-    [string]$TargetName = "EZ4Connect",
-    [string]$DisplayName = "EZ4Connect",
+    [string]$TargetName = "SHOUConnect",
+    [string]$DisplayName = "SHOUConnect",
     [string]$BuildDir = "build",
     [string]$Architecture = "amd64",
     [string]$Nightly = "false"

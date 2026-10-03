@@ -85,7 +85,7 @@ ConfigurationGuideDialog::ConfigurationGuideDialog(
     );
 
     const QString protocol = sourceSettings->value(
-        "ZJUConnect/Protocol",
+        "SHOUConnect/Protocol",
         "atrust"
     ).toString();
     if (protocol == "easyconnect")
@@ -98,13 +98,13 @@ ConfigurationGuideDialog::ConfigurationGuideDialog(
     }
 
     selectAuthenticationMethod(
-        sourceSettings->value("ZJUConnect/AuthType", "psw").toString(),
-        sourceSettings->value("ZJUConnect/LoginDomain").toString(),
-        sourceSettings->value("ZJUConnect/LoginURL").toString()
+        sourceSettings->value("SHOUConnect/AuthType", "psw").toString(),
+        sourceSettings->value("SHOUConnect/LoginDomain").toString(),
+        sourceSettings->value("SHOUConnect/LoginURL").toString()
     );
 
     const QString easyconnectAuthType = sourceSettings->value(
-        "ZJUConnect/EasyConnectAuthType",
+        "SHOUConnect/EasyConnectAuthType",
         sourceSettings->value("Credential/CertFile").toString().isEmpty()
             ? "password"
             : "certificate"
@@ -127,10 +127,10 @@ ConfigurationGuideDialog::ConfigurationGuideDialog(
     );
     certificateTotpSecretLineEdit->setText(totpSecretLineEdit->text());
     countryCodeLineEdit->setText(
-        sourceSettings->value("ZJUConnect/PhoneCountryCode", "86").toString()
+        sourceSettings->value("SHOUConnect/PhoneCountryCode", "86").toString()
     );
     phoneNumberLineEdit->setText(
-        sourceSettings->value("ZJUConnect/PhoneNumber").toString()
+        sourceSettings->value("SHOUConnect/PhoneNumber").toString()
     );
     certificateFileLineEdit->setText(
         sourceSettings->value("Credential/CertFile").toString()
@@ -146,10 +146,10 @@ ConfigurationGuideDialog::ConfigurationGuideDialog(
 void ConfigurationGuideDialog::applyTo(QSettings &settings) const
 {
     settings.setValue(
-        "ZJUConnect/ServerAddress",
+        "SHOUConnect/ServerAddress",
         serverAddressLineEdit->text().trimmed()
     );
-    settings.setValue("ZJUConnect/ServerPort", serverPortSpinBox->value());
+    settings.setValue("SHOUConnect/ServerPort", serverPortSpinBox->value());
     settings.setValue(
         "Credential/Username",
         usernameLineEdit->text().trimmed()
@@ -171,26 +171,26 @@ void ConfigurationGuideDialog::applyTo(QSettings &settings) const
         QString(certificatePasswordLineEdit->text().toUtf8().toBase64())
     );
     settings.setValue(
-        "ZJUConnect/PhoneCountryCode",
+        "SHOUConnect/PhoneCountryCode",
         countryCodeLineEdit->text().trimmed()
     );
     settings.setValue(
-        "ZJUConnect/PhoneNumber",
+        "SHOUConnect/PhoneNumber",
         phoneNumberLineEdit->text().trimmed()
     );
 
     if (atrustRadioButton->isChecked())
     {
-        settings.setValue("ZJUConnect/Protocol", "atrust");
-        settings.setValue("ZJUConnect/AuthType", selectedAuthType);
-        settings.setValue("ZJUConnect/LoginDomain", selectedLoginDomain);
-        settings.setValue("ZJUConnect/LoginURL", selectedLoginUrl);
+        settings.setValue("SHOUConnect/Protocol", "atrust");
+        settings.setValue("SHOUConnect/AuthType", selectedAuthType);
+        settings.setValue("SHOUConnect/LoginDomain", selectedLoginDomain);
+        settings.setValue("SHOUConnect/LoginURL", selectedLoginUrl);
     }
     else
     {
-        settings.setValue("ZJUConnect/Protocol", "easyconnect");
+        settings.setValue("SHOUConnect/Protocol", "easyconnect");
         settings.setValue(
-            "ZJUConnect/EasyConnectAuthType",
+            "SHOUConnect/EasyConnectAuthType",
             certificateAuthenticationRadioButton->isChecked()
                 ? "certificate"
                 : "password"
@@ -209,14 +209,14 @@ QWidget *ConfigurationGuideDialog::createServerPage()
     serverAddressLineEdit = new QLineEdit(page);
     serverAddressLineEdit->setPlaceholderText("例如：vpn.example.edu.cn");
     serverAddressLineEdit->setText(
-        sourceSettings->value("ZJUConnect/ServerAddress").toString()
+        sourceSettings->value("SHOUConnect/ServerAddress").toString()
     );
     formLayout->addRow("服务器地址", serverAddressLineEdit);
 
     serverPortSpinBox = new QSpinBox(page);
     serverPortSpinBox->setRange(1, 65535);
     serverPortSpinBox->setValue(
-        sourceSettings->value("ZJUConnect/ServerPort", 443).toInt()
+        sourceSettings->value("SHOUConnect/ServerPort", 443).toInt()
     );
     formLayout->addRow("服务器端口", serverPortSpinBox);
 

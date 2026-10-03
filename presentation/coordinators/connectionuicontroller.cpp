@@ -92,8 +92,8 @@ ConnectionUiController::ConnectionUiController(
         {
             if (saveDetails)
             {
-                settings()->setValue("ZJUConnect/PhoneCountryCode", countryCode);
-                settings()->setValue("ZJUConnect/PhoneNumber", phoneNumber);
+                settings()->setValue("SHOUConnect/PhoneCountryCode", countryCode);
+                settings()->setValue("SHOUConnect/PhoneNumber", phoneNumber);
                 settings()->sync();
             }
 
@@ -167,8 +167,8 @@ void ConnectionUiController::handleConnectClicked()
         return;
     }
 
-    if (settings()->contains("ZJUConnect/ServerAddress") &&
-        settings()->value("ZJUConnect/ServerAddress").toString().isEmpty())
+    if (settings()->contains("SHOUConnect/ServerAddress") &&
+        settings()->value("SHOUConnect/ServerAddress").toString().isEmpty())
     {
         QMessageBox::critical(parentWidget, "错误", "服务器地址不能为空");
         return;
@@ -179,11 +179,11 @@ void ConnectionUiController::handleConnectClicked()
         settings()->value("Credential/Password", "").toString().toUtf8()
     );
     const QString protocol =
-        settings()->value("ZJUConnect/Protocol", "easyconnect").toString();
+        settings()->value("SHOUConnect/Protocol", "easyconnect").toString();
     const QString authType =
-        settings()->value("ZJUConnect/AuthType", "psw").toString();
+        settings()->value("SHOUConnect/AuthType", "psw").toString();
     const QString easyconnectAuthType = settings()->value(
-        "ZJUConnect/EasyConnectAuthType",
+        "SHOUConnect/EasyConnectAuthType",
         settings()->value("Credential/CertFile", "").toString().isEmpty()
             ? "password"
             : "certificate"
@@ -203,7 +203,7 @@ void ConnectionUiController::handleConnectClicked()
     }
 
 #if defined(Q_OS_WIN)
-    if (settings()->value("ZJUConnect/TUNMode").toBool() &&
+    if (settings()->value("SHOUConnect/TUNMode").toBool() &&
         !Privileges::isElevated())
     {
         if (Privileges::relaunchElevated())
@@ -228,11 +228,11 @@ void ConnectionUiController::handleConnectClicked()
     if (protocol == "atrust" && authType == "smsCheckCode")
     {
         QString countryCode = settings()
-            ->value("ZJUConnect/PhoneCountryCode", "86")
+            ->value("SHOUConnect/PhoneCountryCode", "86")
             .toString()
             .trimmed();
         const QString phoneNumber = settings()
-            ->value("ZJUConnect/PhoneNumber", "")
+            ->value("SHOUConnect/PhoneNumber", "")
             .toString()
             .trimmed();
         if (countryCode.isEmpty() || phoneNumber.isEmpty())
@@ -265,8 +265,8 @@ void ConnectionUiController::handleProxyClicked()
         return;
     }
 
-    const int httpPort = settings()->value("ZJUConnect/HTTPPort").toInt();
-    const int socksPort = settings()->value("ZJUConnect/SOCKS5Port").toInt();
+    const int httpPort = settings()->value("SHOUConnect/HTTPPort").toInt();
+    const int socksPort = settings()->value("SHOUConnect/SOCKS5Port").toInt();
     const SystemProxyConfig proxyConfig{
         httpPort,
         socksPort,

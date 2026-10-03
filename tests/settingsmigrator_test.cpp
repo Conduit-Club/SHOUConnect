@@ -16,10 +16,28 @@ bool migratesKnownVersions()
     const auto action = SettingsMigrator::prepare(settings);
     const bool passed =
         action == SettingsMigrationAction::None
-        && settings.value("ZJUConnect/Protocol").toString() == "easyconnect";
+        && settings.value("SHOUConnect/Protocol").toString() == "easyconnect";
     if (!passed)
     {
         qCritical() << "migratesKnownVersions failed";
+    }
+    return passed;
+}
+
+bool migratesLegacySettingsNamespace()
+{
+    QTemporaryDir directory;
+    QSettings settings(directory.filePath("profile.ini"), QSettings::IniFormat);
+    settings.setValue("Common/ConfigVersion", 8);
+    settings.setValue("ZJUConnect/ServerAddress", "legacy.example.edu");
+
+    const auto action = SettingsMigrator::prepare(settings);
+    const bool passed =
+        action == SettingsMigrationAction::None
+        && settings.value("SHOUConnect/ServerAddress").toString() == "legacy.example.edu";
+    if (!passed)
+    {
+        qCritical() << "migratesLegacySettingsNamespace failed";
     }
     return passed;
 }
@@ -43,5 +61,5 @@ bool recommendsResetForUnsupportedVersions()
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
-    return migratesKnownVersions() && recommendsResetForUnsupportedVersions() ? 0 : 1;
+    return migratesKnownVersions() && migratesLegacySettingsNamespace() && recommendsResetForUnsupportedVersions() ? 0 : 1;
 }

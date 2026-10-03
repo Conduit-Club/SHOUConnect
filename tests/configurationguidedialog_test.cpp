@@ -34,8 +34,8 @@ QStackedWidget *credentialPages(ConfigurationGuideDialog &dialog)
 bool savesPasswordCredentials(const QString &settingsPath)
 {
     QSettings settings(settingsPath, QSettings::IniFormat);
-    settings.setValue("ZJUConnect/Protocol", "easyconnect");
-    settings.setValue("ZJUConnect/EasyConnectAuthType", "password");
+    settings.setValue("SHOUConnect/Protocol", "easyconnect");
+    settings.setValue("SHOUConnect/EasyConnectAuthType", "password");
     settings.setValue("Credential/Username", "old-user");
     settings.setValue(
         "Credential/Password",
@@ -81,10 +81,10 @@ bool savesPasswordCredentials(const QString &settingsPath)
 bool savesSmsCredentials(const QString &settingsPath)
 {
     QSettings settings(settingsPath, QSettings::IniFormat);
-    settings.setValue("ZJUConnect/Protocol", "atrust");
-    settings.setValue("ZJUConnect/AuthType", "smsCheckCode");
-    settings.setValue("ZJUConnect/PhoneCountryCode", "86");
-    settings.setValue("ZJUConnect/PhoneNumber", "123456");
+    settings.setValue("SHOUConnect/Protocol", "atrust");
+    settings.setValue("SHOUConnect/AuthType", "smsCheckCode");
+    settings.setValue("SHOUConnect/PhoneCountryCode", "86");
+    settings.setValue("SHOUConnect/PhoneNumber", "123456");
 
     ConfigurationGuideDialog dialog(nullptr, &settings);
     QStackedWidget *pages = credentialPages(dialog);
@@ -105,8 +105,8 @@ bool savesSmsCredentials(const QString &settingsPath)
     phoneNumber->setText("98765432");
     dialog.applyTo(settings);
 
-    const bool passed = settings.value("ZJUConnect/PhoneCountryCode") == "852"
-        && settings.value("ZJUConnect/PhoneNumber") == "98765432";
+    const bool passed = settings.value("SHOUConnect/PhoneCountryCode") == "852"
+        && settings.value("SHOUConnect/PhoneNumber") == "98765432";
     if (!passed)
     {
         qCritical() << "SMS credentials were not saved by the guide";
@@ -117,8 +117,8 @@ bool savesSmsCredentials(const QString &settingsPath)
 bool savesCertificateCredentials(const QString &settingsPath)
 {
     QSettings settings(settingsPath, QSettings::IniFormat);
-    settings.setValue("ZJUConnect/Protocol", "easyconnect");
-    settings.setValue("ZJUConnect/EasyConnectAuthType", "certificate");
+    settings.setValue("SHOUConnect/Protocol", "easyconnect");
+    settings.setValue("SHOUConnect/EasyConnectAuthType", "certificate");
     settings.setValue("Credential/CertFile", "/tmp/old.p12");
     settings.setValue(
         "Credential/CertPassword",
@@ -175,8 +175,8 @@ bool savesCertificateCredentials(const QString &settingsPath)
 bool showsSsoWithoutCredentialFields(const QString &settingsPath)
 {
     QSettings settings(settingsPath, QSettings::IniFormat);
-    settings.setValue("ZJUConnect/Protocol", "atrust");
-    settings.setValue("ZJUConnect/AuthType", "cas");
+    settings.setValue("SHOUConnect/Protocol", "atrust");
+    settings.setValue("SHOUConnect/AuthType", "cas");
 
     ConfigurationGuideDialog dialog(nullptr, &settings);
     QStackedWidget *pages = credentialPages(dialog);
